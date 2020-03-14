@@ -58,19 +58,24 @@ const Signup = () => {
     const checkEmpty = Object.values(formData).every(i => i !== '');
 
     if(checkValid && checkEmpty) {
+      dispatch(alert.clear())
       dispatch(signupUser(formData));
-    } else {
+    } else { //enhace warning alert from which field
       setState({ ...state, warning: ['Umm...something wrong, please check again!']})
       return;
     };
 
-    setState({ ...initialState, submitted: true });
+    dispatch(alert.clear())
+    return setState({ ...initialState, submitted: true });
   };
 
 
-  const validateEmail = (email) => {
-
+  const isCheckEmail = (email) => {
     return regexEmail.test(email);
+  };
+
+  const isCheckNamePw = (field) => {
+    return regexName.test(field);
   };
 
 
@@ -79,14 +84,14 @@ const Signup = () => {
     const { email, password, confirmPassword } = state;
 
     //email
-    if(email && email !== '' && !validateEmail(email)) {
+    if(email && email !== '' && !isCheckEmail(email)) {
       setState(state => ({...state, isValidEmail: false}))
     } else {
       setState(state => ({...state, isValidEmail: true}))
     };
 
     //password
-    if(password && password !=='' && password.length < PW_LENGTH && !regexName.test(password)) {
+    if(password && password !=='' && password.length < PW_LENGTH && !isCheckNamePw(password)) {
       setState(state => ({...state, isValidPw: false}))
     } else {
       setState(state => ({...state, isValidPw: true}))
@@ -108,8 +113,8 @@ const Signup = () => {
 
     const offSubmitTimer = setTimeout(() => {
       return (
-        setState(state => ({ ...state, submitted: !state.submitted }) ),
-        dispatch(alert.clear())
+        dispatch(alert.clear()),
+        setState(state => ({ ...state, submitted: !state.submitted }))
       )
     }, 10000);
 
@@ -124,10 +129,10 @@ const Signup = () => {
     const { username } = state;
     if(username === '') return ;
     
-    if(regexName.test(username)) return setState(state => ({...state, username: username.toLowerCase(), isValidName: true}))
+    if(isCheckNamePw(username)) return setState(state => ({...state, username: username.toLowerCase(), isValidName: true}))
 
     const lowerUsernameTimer = setTimeout(() => {
-      if(username && username !== '' && !regexName.test(username)) {
+      if(username && username !== '' && !isCheckNamePw(username)) {
         return setState(state => ({...state, username: username.toLowerCase(), isValidName: false}))
       }
     }, 200);
@@ -137,6 +142,7 @@ const Signup = () => {
     };
   }, [state.username, state.isValidName]);
 
+  console.log('state', state)
 
   return (
     <Layout
@@ -164,7 +170,7 @@ const Signup = () => {
               <Input className={ !state.isValidEmail ? 'wrongBorder' : 'defaultBorder' }type="text" name="email" placeholder="Email" value={ state.email } onChange={ (e) => onChangeInput(e) } />
 
               {
-                (!state.isValidEmail && !validateEmail(state.email)) && <div className='wrongText'>Hmm...that doesn't look like an email address</div>
+                (!state.isValidEmail && !isCheckEmail(state.email)) && <div className='wrongText'>Hmm...that doesn't look like an email address</div>
               }
             </FormGroup>
 
@@ -195,7 +201,7 @@ const Signup = () => {
             }
 
             {
-              alertMessage && <div className="signupSuccess">{alertMessage}</div>
+              alertMessage && <div className="signupSuccess">{ alertMessage }</div>
             }
           </div>
 

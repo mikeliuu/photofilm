@@ -137,9 +137,11 @@
   background: $primary-color !important;
   border: 1px solid $primary-color !important;
 
-  &:hover {
-    background-color: $secondary-color !important;
-    border: 1px solid $secondary-color !important;
+  @media(hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: $secondary-color !important;
+      border: 1px solid $secondary-color !important;
+    }
   }
 }
 
@@ -148,10 +150,12 @@
   border: 1px solid $secondary-color !important;
   color: $secondary-color !important;
 
-  &:hover {
-    background-color: $secondary-color !important;
-    border: 1px solid $secondary-color !important;
-    color: $text-color !important;
+  @media(hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: $secondary-color !important;
+      border: 1px solid $secondary-color !important;
+      color: $text-color !important;
+    }
   }
 }
 
