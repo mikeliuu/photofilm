@@ -57,6 +57,9 @@ const Signup = () => {
     const checkValid = (isValidName && isValidEmail && isValidPw && isValidConfirmPw);
     const checkEmpty = Object.values(formData).every(i => i !== '');
 
+    // console.log('formData', formData);
+    
+
     if(checkValid && checkEmpty) {
       dispatch(alert.clear())
       dispatch(signupUser(formData));
@@ -142,7 +145,7 @@ const Signup = () => {
     };
   }, [state.username, state.isValidName]);
 
-  console.log('state', state)
+  // console.log('state', state)
 
   return (
     <Layout
@@ -192,7 +195,9 @@ const Signup = () => {
               }
             </FormGroup>
 
-            <Button type="submit" className="signupBtn btnFilled">Signup</Button>
+            <Button type="submit" className="signupBtn btnFilled">
+              { state.submitted && !alertMessage ? `Sending...` : `Signup` }
+            </Button>
 
             {/* {alertMessage} */}
 
@@ -214,6 +219,5 @@ const Signup = () => {
     </Layout>
   );
 };
-
 
 export default Signup;
