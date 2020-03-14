@@ -1,0 +1,92 @@
+.navWarpper {
+  position: fixed;
+  width: 100%;
+  height: $navbar-height;
+  // background-color: white;
+  z-index: 99;
+}
+
+.navbar {
+  position: fixed;
+  padding: 12px 30px;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background-color: white;
+
+
+  .navLogo {
+    color: $secondary-color !important;
+    letter-spacing: -.4px;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 0 14px;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    img{
+      width: 50px;
+      height: 100%;
+    }
+  }
+
+
+  .navList {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row nowrap;
+    margin-left: auto;
+    
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .navLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    text-align: center;
+    width: 6em; //80px;
+    height: 3em; //30px;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.06);
+      border-radius: 3em;
+      -webkit-border-radius: 3em;
+      -moz-border-radius: 3em;
+      -ms-border-radius: 3em;
+      -o-border-radius: 3em;
+    }
+    
+  }
+}
+
+.linkText {
+  letter-spacing: -.4px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.pinGrey {
+  color: $pin-grey !important;
+}
+
+#navDivider {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  border-bottom: 1px solid $pin-white !important;
+}

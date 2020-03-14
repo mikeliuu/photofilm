@@ -1,0 +1,95 @@
+.filmInfo {
+  max-width: 100%;
+  min-width: $film-card-min-width;
+  width: $film-page-max-width;
+  margin: auto;
+  justify-items: center;
+  padding-top: 1em;
+
+  display: grid;
+  grid-gap: 1em 0;
+  grid-template-columns: repeat(auto-fit, minmax($film-card-min-width, 1fr));
+  grid-template-areas: 
+  'filmCard';
+
+
+  .cardboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($film-card-min-width, 2fr));
+    grid-gap: 3em 0;
+    grid-area: filmCard;
+    
+    padding: 4em 0;
+    width: 100%;
+    height: 100%;
+    background-color: $text-color;
+    box-shadow: 1px 1px 16px rgba(0, 0, 0, 0.1) !important;
+    border-radius: 32px;
+    -webkit-border-radius: 32px;
+    -moz-border-radius: 32px;
+    -ms-border-radius: 32px;
+    -o-border-radius: 32px;
+  
+
+    .imageWrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+
+
+      .infoImgBox {
+        display: flex;
+        border: 1px solid rgba(208, 197, 167, 0.8) !important;
+  
+        // padding: 2em 6em;
+        border-radius: 16px;
+        -webkit-border-radius: 16px;
+        -moz-border-radius: 16px;
+        -ms-border-radius: 16px;
+        -o-border-radius: 16px;
+      }
+      
+
+      #filmImg {
+        width: 12em;
+        height: 100%;
+        margin: 2em;
+      }
+    }
+  
+
+    .infoWrapper {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-evenly;
+      flex-flow: nowrap column;
+      height: 100%;
+      width: 100%;
+      padding: 0 50px;
+
+      p {
+        margin-bottom: 0;
+      }
+
+
+      .infoHeader {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-evenly;
+        flex-flow: nowrap column;
+        width: 100%;
+        height: 100%;
+        margin-bottom: 5%;
+      }
+      
+
+      .infoBody {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}

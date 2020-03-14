@@ -1,0 +1,53 @@
+.igWrapper {
+  display: grid;
+  grid-gap: 1em 0;
+  justify-items: center;
+  margin: auto;
+  grid-template-columns: 1fr;
+  grid-template-rows: 40px 40px auto 100px;
+  width: 100%;
+  max-width: $film-page-max-width;
+  grid-template-areas: 
+  '.'
+  'head'
+  'iglist'
+  '.';
+
+
+  .igHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: nowrap row;
+    width: 100%;
+    grid-area: head;
+  
+    h1,h2,h3,h4,h5,h6 {
+      margin: 0 !important;
+    }
+  }
+
+
+  .igList {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 3fr));
+    grid-template-rows: auto;
+    grid-gap: 1em 1em;
+    justify-items: center;
+    margin-top: 20px;
+    grid-area: iglist;
+  
+  
+    .igImg {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 100%;
+        // height: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.layout {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  // height: calc(100% - (200px + 66px));
+  // height: calc(100% - (#{$navbar-height}));
+}
+
+.layoutBody {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  padding: 2em;
+  padding-top: 76px;
+}

@@ -1,0 +1,96 @@
+.signup {
+  min-width: 240px;
+  max-width: 100%;
+  width: 380px;
+  height: 100%;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2) !important;
+
+  &:hover, &:focus {
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  border-radius: $signup-radius;
+  -webkit-border-radius: $signup-radius;
+  -moz-border-radius: $signup-radius;
+  -ms-border-radius: $signup-radius;
+  -o-border-radius: $signup-radius;
+}
+
+.formInput {
+  padding: 2em;
+  padding-bottom: 0;
+  background-color: $text-color;
+
+  border-top-left-radius: $signup-radius;
+  -webkit-border-top-left-radius: $signup-radius;
+  -moz-border-top-left-radius: $signup-radius;
+  -ms-border-top-left-radius: $signup-radius;
+  -o-border-top-left-radius: $signup-radius;
+  border-top-right-radius: $signup-radius;
+  -webkit-border-top-right-radius: $signup-radius;
+  -moz-border-top-right-radius: $signup-radius;
+  -ms-border-top-right-radius: $signup-radius;
+  -o-border-top-right-radius: $signup-radius;
+}
+
+.defaultBorder, .defaultBorder:focus {
+  border: 1px solid $primary-color !important;
+}
+
+.wrongBorder, .wrongBorder:focus {
+  border: 1px solid $pin-red !important;
+}
+
+.wrongText {
+  color: $pin-red;
+}
+
+.signupLink {
+  text-decoration: none !important;
+  text-align: center;
+}
+
+.signupBtn {
+  margin: 5px 0 19px 0;
+  width: 100%;
+  font-size: 16px;
+}
+
+.warning {
+  color: $pin-red;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.signupSuccess {
+  color: $pin-black;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.signupBottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  background-color: $pin-white !important;
+
+  border-bottom-left-radius: $signup-radius;
+  -webkit-border-bottom-left-radius: $signup-radius;
+  -moz-border-bottom-left-radius: $signup-radius;
+  -ms-border-bottom-left-radius: $signup-radius;
+  -o-border-bottom-left-radius: $signup-radius;
+  border-bottom-right-radius: $signup-radius;
+  -webkit-border-bottom-right-radius: $signup-radius;
+  -moz-border-bottom-right-radius: $signup-radius;
+  -ms-border-bottom-right-radius: $signup-radius;
+  -o-border-bottom-right-radius: $signup-radius;
+}
+
+.pinWhite {
+  color: $pin-white !important;
+}
+
+.pinBlack {
+  color: $pin-black !important;
+}

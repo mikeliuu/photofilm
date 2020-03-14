@@ -1,0 +1,15 @@
+.not-found-wrapper {
+  margin-top: 35vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: wrap column;
+}
+
+.not-found {
+  text-align: center;
+  color: $pin-black !important;
+  letter-spacing: -.4px;
+  font-weight: 700;
+  font-size: 16px;
+}

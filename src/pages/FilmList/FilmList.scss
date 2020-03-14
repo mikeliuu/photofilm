@@ -1,0 +1,167 @@
+.cardSectionWrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 100px;
+  grid-gap: 0 2em;
+  grid-template-areas: 
+        'card-section'
+        'btn';
+
+  margin: 20px 0 0 0;
+}
+
+
+.cardSection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-rows: auto;
+  grid-gap: 3em 0;
+  justify-items: center;
+  grid-area: 'card-section';
+
+  margin-bottom: 50px;
+}
+
+.productCard { 
+  background: #FFFFFF !important;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2) !important;
+  width: 240px !important;
+  height: 320px !important;
+  grid-area: 'card';
+
+  &:hover, &:focus {
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  .pcardWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 175px !important;
+    height: 175px !important;
+    margin: auto !important;
+    padding: 20px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .cbody {
+    padding: 20px !important;
+  }
+
+  .ctitle {
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    margin-bottom: 5px !important;
+    color: $head-text-color;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .crating {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    .rateWrapper {
+      display: flex;
+      align-items: flex-start;
+      flex-flow: row nowrap;
+      padding-right: 10px !important;
+
+      svg, img {
+        color: $secondary-color;
+      }
+
+      .rateText {
+        color: $info-text-color !important;
+        // font-weight: 600 !important;
+        padding-left: 2px !important;
+        
+      }
+    }
+  }
+
+  .cardBtnWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-flow: row nowrap;
+
+    margin-top: 30px;
+
+    a {
+      color: $text-color;
+      text-decoration: none;
+    }
+
+    .cardBtn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 90px !important;
+      // background-color: $secondary-color;
+      font-size: 12px;
+
+      svg, img {
+        font-size: 16px;
+      }
+    }
+  }
+  
+}
+
+.cardDivider {
+  border-bottom: 1px solid #D0C5A7 !important;
+  margin: 0 20px !important;
+}
+
+.moreBtnWrapper {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  // padding-top: 40px;
+
+  button {
+    margin: 0 auto !important;
+  }
+  grid-area: 'btn';
+}
+
+.btnFilled, .btnFilled:focus {
+  background: $primary-color !important;
+  border: 1px solid $primary-color !important;
+
+  &:hover {
+    background-color: $secondary-color !important;
+    border: 1px solid $secondary-color !important;
+  }
+}
+
+.btnOutline, .btnOutline:focus {
+  background: $text-color !important;
+  border: 1px solid $secondary-color !important;
+  color: $secondary-color !important;
+
+  &:hover {
+    background-color: $secondary-color !important;
+    border: 1px solid $secondary-color !important;
+    color: $text-color !important;
+  }
+}
+
+.btnMore {
+  background-color: $secondary-color !important;
+  border: 1px solid $secondary-color !important;
+  color: $text-color !important;
+
+  &:hover, :focus, :active {
+    background-color: $primary-color !important;
+    border: 1px solid $primary-color !important;
+  }
+}
