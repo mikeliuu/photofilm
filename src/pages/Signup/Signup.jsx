@@ -93,7 +93,7 @@ const Signup = () => {
     };
 
     //confirm password
-    if(confirmPassword && confirmPassword !=='' && confirmPassword !== password && !regexName.test(confirmPassword)) {
+    if(confirmPassword && confirmPassword !=='' && confirmPassword !== password) {
       setState(state => ({...state, isValidConfirmPw: false}))
     } else {
       setState(state => ({...state, isValidConfirmPw: true}))
