@@ -14,6 +14,9 @@ const Signup = () => {
 
   const NAME_LENGTH = 4;
   const PW_LENGTH = 4;
+  const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const regexName = /^[a-z0-9]{4,}$/;
+
 
   const initialState = {
     username: '',
@@ -66,24 +69,14 @@ const Signup = () => {
 
 
   const validateEmail = (email) => {
-    const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    return regex.test(email);
+    return regexEmail.test(email);
   };
 
 
   //check if validate & show warning
   useEffect(() => {
-    const { username, email, password, confirmPassword } = state;
-
-    const regex = /^[a-z0-9]{4,}$/;
-
-    //username
-    if(username && username !== '' && !regex.test(username)) {
-      setState(state => ({...state, isValidName: false}))
-    } else {
-      setState(state => ({...state, isValidName: true}))
-    };
+    const { email, password, confirmPassword } = state;
 
     //email
     if(email && email !== '' && !validateEmail(email)) {
@@ -93,20 +86,20 @@ const Signup = () => {
     };
 
     //password
-    if(password && password !=='' && password.length < PW_LENGTH && !regex.test(password)) {
+    if(password && password !=='' && password.length < PW_LENGTH && !regexName.test(password)) {
       setState(state => ({...state, isValidPw: false}))
     } else {
       setState(state => ({...state, isValidPw: true}))
     };
 
     //confirm password
-    if(confirmPassword && confirmPassword !=='' && confirmPassword !== password && !regex.test(confirmPassword)) {
+    if(confirmPassword && confirmPassword !=='' && confirmPassword !== password && !regexName.test(confirmPassword)) {
       setState(state => ({...state, isValidConfirmPw: false}))
     } else {
       setState(state => ({...state, isValidConfirmPw: true}))
     };
 
-  }, [state.username, state.email, state.password, state.confirmPassword]);
+  }, [state.email, state.password, state.confirmPassword]);
 
 
   //success submit message
@@ -125,18 +118,24 @@ const Signup = () => {
     };
   }, [state.submitted, dispatch]);
 
-  //username toLowerCase
+
+  //check username & toLowerCase
   useEffect(() => {
-    if(state.username === '') return ;
+    const { username } = state;
+    if(username === '') return ;
     
+    if(regexName.test(username)) return setState(state => ({...state, username: username.toLowerCase(), isValidName: true}))
+
     const lowerUsernameTimer = setTimeout(() => {
-      return setState(state => ({ ...state, username: state.username.toLowerCase() }))
-    }, 300);
+      if(username && username !== '' && !regexName.test(username)) {
+        return setState(state => ({...state, username: username.toLowerCase(), isValidName: false}))
+      }
+    }, 200);
 
     return () => {
       clearTimeout(lowerUsernameTimer)
     };
-  }, [state.username]);
+  }, [state.username, state.isValidName]);
 
 
   return (
