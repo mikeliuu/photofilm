@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import Search from '../Search/Search';
@@ -6,14 +6,32 @@ import Search from '../Search/Search';
 const NavBar = () => {
   const { pathname } = useLocation();
 
+  const [state, setState] = useState({
+    searchVal: ''
+  });
+
+  const onSearch = (e) => {
+    console.log('onSearch', e.target.value);
+
+    setState({...state, searchVal: e.target.value});
+  };
+
+  const onClearSearch = () => {
+    console.log('onClearSearch', state);
+    
+    setState({ ...state, searchVal: '' });
+  };
+
   const linkNormal = `linkText pinGrey`;
   const linkActive = `linkText pinBlack`;
 
   const navList = [
     { path: '/', text: 'Home' },
     { path: '/saved', text: 'Saved' },
-    { path: '/signup', text: 'Signup' }
+    // { path: '/signup', text: 'Signup' }
   ];
+
+  console.log('navbar state', state);
 
 
   return (
@@ -24,7 +42,11 @@ const NavBar = () => {
         </Link>
 
         <div className='navRight'>
-          <Search/>
+          <Search 
+            value={ state.searchVal }
+            onChange={ (e) => onSearch(e) }
+            btnOnClick={ () => onClearSearch() }
+          />
 
           <div className="navList">
             {

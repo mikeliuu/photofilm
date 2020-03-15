@@ -9,23 +9,61 @@
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
 
-  input[type='search']::-webkit-input-placeholder {
+  input[type='navSearch']::-webkit-input-placeholder {
     color: $pin-grey;
-    font-size: 16px;
+    letter-spacing: -.4px;
     font-weight: 700;
+    font-size: 16px;
   }
 }
 
-#searchIcon {
+.searchIcon {
   font-size: 24px;
+  color: $pin-grey;
 }
 
 .searchBgColor {
   background-color: inherit !important;
 }
 
+.searchGroup {
+  position: relative;
+}
+
+.searchClearWrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.clearBtnBg {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: $search-btn-grey;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+}
+
+.searchClear {
+  font-size: 14px !important;
+  color: $pin-white;
+}
+
 .searchInput {
   padding-left: 0 !important;
+  padding-right: 0 !important;
+  width: 76% !important;
 
   border-top-right-radius: 8px;
   -webkit-border-top-right-radius: 8px;

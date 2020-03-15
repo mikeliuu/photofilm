@@ -1,5 +1,6 @@
 import React from 'react';
-import SearchIcon from '@material-ui/icons/Search';
+import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
+import ClearRoundedIcon from '@material-ui/icons/ClearRounded';
 import { InputGroup, FormControl } from 'react-bootstrap';
 
 const Search = (props) => {
@@ -8,16 +9,34 @@ const Search = (props) => {
     <InputGroup className="search">
       <InputGroup.Prepend>
         <InputGroup.Text className="searchBgColor">
-          <SearchIcon id='searchIcon'/>
+          <SearchRoundedIcon className='searchIcon'/>
         </InputGroup.Text>
       </InputGroup.Prepend>
 
-      <FormControl
-        type='search'
-        className="searchBgColor searchInput"
-        placeholder="Search..."
+      <div className='searchGroup'>
+        <FormControl
+          className="searchBgColor searchInput"
+          type='navSearch'
+          placeholder="Search..."
+          value={ props.value }
+          onChange={ props.onChange }
+          onClick={ props.onClick }
+        />
         
-      />
+        <div className='searchClearWrapper' onClick={ props.btnOnClick }>
+          {
+            props.value && (
+              <div className='clearBtnBg'>
+                <ClearRoundedIcon 
+                  className='searchClear'
+                />
+              </div>
+            )
+          }
+        </div>
+        
+      </div>
+      
     </InputGroup>
   );
 };
