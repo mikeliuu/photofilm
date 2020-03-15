@@ -26,7 +26,7 @@ const SHOW_INITIAL = 6;
 const FilmList = () => {
   const dispatch = useDispatch();
   const films = useSelector(state => state.films.items);
-  
+
   const [state, setState] = useState({
     showRange: SHOW_INITIAL,
     savedList: window.localStorage.getItem("saved_films")
@@ -79,18 +79,9 @@ const FilmList = () => {
           films.length > 0 &&
           films.map((i, index) => {
             if (index <= state.showRange - 1) {
-              const filmName = i.brand
+              const filmName = i.brand.name
                 .toUpperCase()
                 .concat(` - ${i.name.toUpperCase()}`);
-
-              const seoName = i.name && i.name.toLowerCase()
-              .trim()
-              .replace(/^\s|\s$/g,'')
-              .replace(/[^a-z0-9 -]/g,'')
-              .replace(/\s+/g, '-')
-              .replace(/-+/g, '-')
-              .replace(/^-+/, '')
-              .replace(/-+$/, '');
 
               return (
                 <Card className="productCard" key={index}>
@@ -116,7 +107,7 @@ const FilmList = () => {
                     </div>
 
                     <div className="cardBtnWrapper">
-                      <Link to={`/film/${seoName}`}>
+                      <Link to={`/film/${i.seo.slug}`}>
                         <Button
                           className="cardBtn btnFilled"
                           onClick={() => viewedWrapperFunc(i._id, i.viewed)}
