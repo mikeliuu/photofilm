@@ -79,9 +79,9 @@ const FilmList = () => {
           films.length > 0 &&
           films.map((i, index) => {
             if (index <= state.showRange - 1) {
-              const filmName = i.brand.name
-                .toUpperCase()
-                .concat(` - ${i.name.toUpperCase()}`);
+              const filmName = i.brand.name && i.brand.name
+              .toUpperCase()
+              .concat(` - ${i.name.toUpperCase()}`);
 
               return (
                 <Card className="productCard" key={index}>
