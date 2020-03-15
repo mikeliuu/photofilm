@@ -71,16 +71,9 @@ const FilmSaved = () => {
           { savedData.length > 0 && (
             savedData.map((i, index) => {
 
-              const filmName = i.brand.toUpperCase().concat(` - ${i.name.toUpperCase()}`);
-
-              const seoName = i.name && i.name.toLowerCase()
-              .trim()
-              .replace(/^\s|\s$/g,'')
-              .replace(/[^a-z0-9 -]/g,'')
-              .replace(/\s+/g, '-')
-              .replace(/-+/g, '-')
-              .replace(/^-+/, '')
-              .replace(/-+$/, '');
+              const filmName = i.brand.name
+              .toUpperCase()
+              .concat(` - ${i.name.toUpperCase()}`);
 
               return (
                 <Card className="productCard" key={index}>
@@ -106,7 +99,7 @@ const FilmSaved = () => {
                   </div>
 
                   <div className="cardBtnWrapper">
-                    <Link to={`/film/${seoName}`}>
+                    <Link to={`/film/${i.seo.slug}`}>
                       <Button
                         className="cardBtn btnFilled"
                         onClick={() => viewedWrapperFunc(i._id, i.viewed)}

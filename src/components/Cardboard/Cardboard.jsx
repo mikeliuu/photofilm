@@ -21,7 +21,7 @@ const Cardboard = (props) => (
         <div className='infoWrapper'>
           <div className='infoHeader'>
             <h3>{props.name.toUpperCase()}</h3>
-            <h5>{props.brand.toUpperCase()}</h5>
+            <h5>{props.brand.name.toUpperCase()}</h5>
           </div>
           <div className='infoBody'>
             <p>{props.description}</p>
