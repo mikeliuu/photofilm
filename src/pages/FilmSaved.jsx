@@ -71,7 +71,7 @@ const FilmSaved = () => {
           { savedData.length > 0 && (
             savedData.map((i, index) => {
 
-              const filmName = i.brand.name
+              const filmName = i.brand.name && i.brand.name
               .toUpperCase()
               .concat(` - ${i.name.toUpperCase()}`);
 
