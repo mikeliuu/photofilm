@@ -7,18 +7,16 @@ const Search = (props) => {
   return (
     <InputGroup className="search">
       <InputGroup.Prepend>
-
-        <InputGroup.Text id="search-input" className="searchInput">
-          <SearchIcon />
+        <InputGroup.Text className="searchBgColor">
+          <SearchIcon id='searchIcon'/>
         </InputGroup.Text>
-
       </InputGroup.Prepend>
 
       <FormControl
-        className="searchInput"
+        type='search'
+        className="searchBgColor searchInput"
         placeholder="Search..."
-        aria-label="search-input"
-        aria-describedby="search-input"
+        
       />
     </InputGroup>
   );
