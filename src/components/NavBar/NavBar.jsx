@@ -7,20 +7,30 @@ const NavBar = () => {
   const { pathname } = useLocation();
 
   const [state, setState] = useState({
-    searchVal: ''
+    isSearch: false,
+    searchVal: '',
   });
 
   const onSearch = (e) => {
     console.log('onSearch', e.target.value);
 
+    //wip on search logic
+
     setState({...state, searchVal: e.target.value});
   };
 
-  const onClearSearch = () => {
-    console.log('onClearSearch', state);
+  const onClickSearch = () => {
+    console.log('onClickSearch');
     
+    setState({ ...state, isSearch: !state.isSearch });
+  };
+
+  const onClearSearch = () => {
+    console.log('onClearSearch');
+
     setState({ ...state, searchVal: '' });
   };
+
 
   const linkNormal = `linkText pinGrey`;
   const linkActive = `linkText pinBlack`;
@@ -44,7 +54,9 @@ const NavBar = () => {
         <div className='navRight'>
           <Search 
             value={ state.searchVal }
+            isSearch={ state.isSearch }
             onChange={ (e) => onSearch(e) }
+            onClick={() => onClickSearch() }
             btnOnClick={ () => onClearSearch() }
           />
 

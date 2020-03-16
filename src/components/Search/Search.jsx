@@ -4,18 +4,16 @@ import ClearRoundedIcon from '@material-ui/icons/ClearRounded';
 import { InputGroup, FormControl } from 'react-bootstrap';
 
 const Search = (props) => {
-  
-  return (
-    <InputGroup className="search">
-      <InputGroup.Prepend>
-        <InputGroup.Text className="searchBgColor">
-          <SearchRoundedIcon className='searchIcon'/>
-        </InputGroup.Text>
-      </InputGroup.Prepend>
 
+  return (
+    <InputGroup className={`search`} >
+
+      <SearchRoundedIcon className='searchIcon'/>
+      
       <div className='searchGroup'>
         <FormControl
-          className="searchBgColor searchInput"
+          // className={props.isSearch ? `searchExtend searchBgColor searchInput` : `searchBgColor searchInput`}
+          className={`searchBgColor searchInput`}
           type='navSearch'
           placeholder="Search..."
           value={ props.value }
