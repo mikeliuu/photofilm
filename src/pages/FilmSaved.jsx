@@ -19,13 +19,14 @@ import {
 
 const FilmSaved = () => {
   const dispatch = useDispatch();
-  const films = useSelector(state => state.films.items);
 
   const [state, setState] = useState({
     savedList: window.localStorage.getItem("saved_films")
     ? JSON.parse(window.localStorage.getItem("saved_films"))
     : []
   });
+
+  const films = useSelector(state => state.films.items);
 
 
   useEffect(() =>{
