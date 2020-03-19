@@ -19,7 +19,7 @@ const SearchResult = (props) => {
       }
 
       {
-        props.results.length && (
+        props.results.length > 0 && (
           props.results.map((i, index) => {
             return (
               <ListGroup.Item key={index} action href={`/film/${i.seo.slug}`}>
