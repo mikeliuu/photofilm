@@ -4,6 +4,8 @@ import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import ClearRoundedIcon from '@material-ui/icons/ClearRounded';
 import { InputGroup, FormControl } from 'react-bootstrap';
 
+import SearchResult from './SearchResult/SearchResult';
+
 const Search = () => {
   const initialState = {
     isSearch: false,
@@ -33,8 +35,9 @@ const Search = () => {
     setState({ ...initialState });
   };
 
-  //logic, move to onSearch
+  //search logic,
   const noSpaceVal = state.searchVal.trim().toLowerCase().replace(/\s/g,'');
+  const keyword = state.searchVal.trim().toLowerCase();
 
   const results = films.filter(film => {
     return (
@@ -47,19 +50,15 @@ const Search = () => {
     )
   });
 
-  console.log('search noSpaceVal', noSpaceVal);
-  console.log('search results', results);
-
 
   return (
-    <InputGroup className={`search`} >
+    <InputGroup className='search'>
 
       <SearchRoundedIcon className='searchIcon'/>
 
       <div className='searchGroup'>
         <FormControl
-          // className={state.isSearch ? `searchExtend searchBgColor searchInput` : `searchBgColor searchInput`}
-          className={`searchBgColor searchInput`}
+          className='searchBgColor searchInput'
           type='navSearch'
           placeholder="Search..."
           value={ state.searchVal }
@@ -80,6 +79,15 @@ const Search = () => {
         </div>
         
       </div>
+
+      {
+        state.searchVal && 
+        <SearchResult
+          keyword={ keyword }
+          results={ results }
+        />
+      }
+      
       
     </InputGroup>
   );
