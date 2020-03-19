@@ -38,6 +38,14 @@
     }
   }
 
+  .navRight {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row nowrap;
+    margin-left: auto;
+  }
+
 
   .navList {
     display: flex;
