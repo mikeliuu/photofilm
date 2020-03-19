@@ -23,6 +23,7 @@ const Search = () => {
     console.log('onSearch', e.target.value);
 
     //wip on search logic
+    //wip on update film viewed
 
     setState({...state, searchVal: e.target.value});
   };
