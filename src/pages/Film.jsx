@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { useParams, useLocation } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
   fetchIgPosts
 } from '../actions/igActions';
+
+import { fetchFilms, addFilmViewed } from '../actions/filmActions';
 
 import Layout from '../components/Layout/Layout';
 import Loading from '../components/Loading/Loading';
@@ -15,10 +17,10 @@ const Film = () => {
   const dispatch = useDispatch();
 
   const { seoName } = useParams();
-
   const prevSeoName = useLocation().pathname.split('/')[2];  
+  const prevSlug = seoName || prevSeoName;
 
-  const pSlug = seoName || prevSeoName;
+  const VIEWED_TIME = 60000;
 
   const films = useSelector(state => state.films.items);
   const posts = useSelector(state => state.posts.items);
@@ -26,30 +28,49 @@ const Film = () => {
   const [state, setState] = useState({
     selected: {},
     tag: '',
-    slug: ''
+    slug: '',
+    isFetchViewed: true,
   });
 
-  useEffect(() => {
+
+  useLayoutEffect(() => {
     if(films && films.length > 0) {
+      const selectedData = films.filter(i => i.seo.slug === prevSlug)[0];
 
-      const selectedData = films.filter(i => i.seo.slug === pSlug)[0];
-
-      const tag = selectedData.name.trim().replace('-', ' ').split(' ').join('').toLowerCase();
+      const tag = selectedData && selectedData.name.trim().replace('-', ' ').split(' ').join('').toLowerCase();
 
       setState(state => ({ 
         ...state, 
         selected: selectedData,
         tag: tag,
-        slug: pSlug
+        slug: prevSlug
       }));
+    } else {
+      dispatch(fetchFilms());
     };
-  }, [films, pSlug]);
+
+  }, [films, prevSlug, dispatch]);
 
 
   useEffect(() => {
+    let viewedTimeout;
+    
     if(state.tag) {
       dispatch(fetchIgPosts(state.tag));
     };
+
+    if(state.isFetchViewed && state.slug && Object.entries(state.selected).length > 0) {
+      
+      viewedTimeout = setTimeout(() => {
+        dispatch(addFilmViewed(state.selected._id, state.selected.viewed, state.slug));
+      }, VIEWED_TIME);
+
+      setState(state => ({ ...state, isFetchViewed: false }));
+    };
+
+    return () => {
+      clearTimeout(viewedTimeout);
+    }
   }, [state.tag, dispatch]);
 
 
@@ -57,6 +78,8 @@ const Film = () => {
 
   const hasPosts = posts && posts.length > 0;
 
+  console.log('-- state.isFetchViewed: ', state.isFetchViewed);
+  console.log('-- state.selected.viewed: ', state.selected.viewed);
 
   return (
     <Layout 
