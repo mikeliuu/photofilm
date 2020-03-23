@@ -114,7 +114,7 @@ const Signup = () => {
   useEffect(() => {
     if(!state.submitted) return;
 
-    const offSubmitTimer = setTimeout(() => {
+    const offSubmitTimeout = setTimeout(() => {
       return (
         dispatch(alert.clear()),
         setState(state => ({ ...state, submitted: !state.submitted }))
@@ -122,7 +122,7 @@ const Signup = () => {
     }, 10000);
 
     return () => {
-      clearTimeout(offSubmitTimer);
+      clearTimeout(offSubmitTimeout);
     };
   }, [state.submitted, dispatch]);
 

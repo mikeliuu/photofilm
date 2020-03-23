@@ -14,15 +14,15 @@ import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import {
   addFilmSaved,
   subFilmSaved,
-  addFilmViewed
+  // addFilmViewed
 } from "../actions/filmActions";
 
 const FilmSaved = () => {
   const dispatch = useDispatch();
 
   const [state, setState] = useState({
-    savedList: window.localStorage.getItem("saved_films")
-    ? JSON.parse(window.localStorage.getItem("saved_films"))
+    savedList: window.localStorage.getItem("savedList")
+    ? JSON.parse(window.localStorage.getItem("savedList"))
     : []
   });
 
@@ -30,28 +30,24 @@ const FilmSaved = () => {
 
 
   useEffect(() =>{
-    if(!window.localStorage['saved_films']) {
-      window.localStorage.setItem("saved_films", JSON.stringify([]));
+    if(!window.localStorage['savedList']) {
+      window.localStorage.setItem("savedList", JSON.stringify([]));
     };
 
-    window.localStorage.setItem("saved_films", JSON.stringify(state.savedList));
+    window.localStorage.setItem("savedList", JSON.stringify(state.savedList));
   }, [state]);
 
 
   // wrapper func from here! //
-  const savedWrapperFunc = (id, saved) => {
+  const savedWrapperFunc = (id, saved, slug) => {
     if (state.savedList.indexOf(id) === -1 && saved >= 0) {
-      dispatch(addFilmSaved(id, saved));
+      dispatch(addFilmSaved(id, saved, slug));
       setState({...state, savedList: [...state.savedList, id]});
       
     } else if (saved > 0) {
-      dispatch(subFilmSaved(id, saved));
+      dispatch(subFilmSaved(id, saved, slug));
       setState({...state, savedList: state.savedList.filter(i => i !== id)});
     }
-  };
-
-  const viewedWrapperFunc = (id, viewed) => {
-    dispatch(addFilmViewed(id, viewed));
   };
 
 
@@ -103,7 +99,6 @@ const FilmSaved = () => {
                     <Link to={`/film/${i.seo.slug}`}>
                       <Button
                         className="cardBtn btnFilled"
-                        onClick={() => viewedWrapperFunc(i._id, i.viewed)}
                       >
                         View
                       </Button>
@@ -112,7 +107,7 @@ const FilmSaved = () => {
                     <Button
                       key={i.index}
                       className="cardBtn btnOutline"
-                      onClick={() => savedWrapperFunc(i._id, i.saved)}
+                      onClick={() => savedWrapperFunc(i._id, i.saved, i.seo.slug)}
                     >
                       {state.savedList.indexOf(i._id) === -1 ? (
                         <>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import NavBar from '../NavBar/NavBar';
 
-const Layout = ({title, keywords, description, className, style, children}) => {
+const Layout = ({title, keywords, description, className, style, onClick, onChange, onLoad, children}) => {
 
   return (
     <div className='layout'>
@@ -16,7 +16,7 @@ const Layout = ({title, keywords, description, className, style, children}) => {
 
       <NavBar/>
 
-      <div className={className ? `layoutBody ${className}` : `layoutBody`} style={ style }>
+      <div className={className ? `layoutBody ${className}` : `layoutBody`} style={ style } onClick={ onClick } onChange={ onChange } onLoad={ onLoad }>
         { children }
       </div>
 

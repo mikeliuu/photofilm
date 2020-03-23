@@ -2,7 +2,7 @@ import axios from 'axios';
 import * as types from './types';
 import config from '../config.json';
 
-export const fetchFilms = () => { 
+export const fetchFilms = () => {
   return async (dispatch, getState) => {
     const res = await axios.get(`${config.API_HOST}/api/films`);
     
@@ -13,10 +13,10 @@ export const fetchFilms = () => {
   };
 };
 
-export const addFilmSaved = (id, saved) => {  
+export const addFilmSaved = (id, saved, slug) => {
   saved += 1
   
-  axios.put(`${config.API_HOST}/api/films/${id}`, { saved })
+  axios.put(`${config.API_HOST}/api/films/${slug}`, { id, saved })
   .catch(err => {
     console.log(err);
   });
@@ -27,10 +27,10 @@ export const addFilmSaved = (id, saved) => {
   }
 };
 
-export const subFilmSaved = (id, saved) => {
+export const subFilmSaved = (id, saved, slug) => {
   saved -= 1
   
-  axios.put(`${config.API_HOST}/api/films/${id}`, { saved })
+  axios.put(`${config.API_HOST}/api/films/${slug}`, { id, saved })
   .catch(err => {
     console.log(err);
   });
@@ -41,10 +41,10 @@ export const subFilmSaved = (id, saved) => {
   }
 };
 
-export const addFilmViewed = (id, viewed) => {
+export const addFilmViewed = (id, viewed, slug) => {
   viewed += 1
 
-  axios.put(`${config.API_HOST}/api/films/${id}`, { viewed })
+  axios.put(`${config.API_HOST}/api/films/${slug}`, { id, viewed })
   .catch(err => {
     console.log(err);
   });
