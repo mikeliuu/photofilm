@@ -18,14 +18,20 @@ const CheckoutForm = () => {
       return;
     }
 
-    const result = await stripe.confirmCardPayment('{CLIENT_SECRET}', {
-      payment_method: {
-        card: elements.getElement(CardElement),
-        billing_details: {
-          name: 'Jenny Rosen',
-        },
+    //{CLIENT_SECRET} should be ${id}_secret_${secret}
+    //https://stripe.com/docs/api/payment_intents/object#payment_intent_object-client_secret
+    const tempClientSecret = 'pi_1EUn5sJnRDDqOaR75NylFAz3_secret_0EGmBneWy2Gae67xurZrTvl74';
+    const result = await stripe.confirmCardPayment(
+      `${tempClientSecret}`,
+      {
+        payment_method: {
+          card: elements.getElement(CardElement),
+          billing_details: {
+            name: 'Jenny Rosen',
+          },
+        }
       }
-    });
+    );
 
     if (result.error) {
       // Show error to your customer (e.g., insufficient funds)
