@@ -2,6 +2,7 @@ import React, { useState, useEffect, useLayoutEffect } from "react";
 import { useParams, useLocation } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 
+import config from '../config.json';
 import {
   fetchIgPosts
 } from '../actions/igActions';
@@ -20,7 +21,7 @@ const Film = () => {
   const prevSeoName = useLocation().pathname.split('/')[2];  
   const prevSlug = seoName || prevSeoName;
 
-  const VIEWED_TIME = 60000;
+  const VIEWED_TIME = config.VIEWED_TIME;
 
   const films = useSelector(state => state.films.items);
   const posts = useSelector(state => state.posts.items);
@@ -77,9 +78,6 @@ const Film = () => {
   const hasSelected = Object.entries(state.selected).length > 0 && state.selected.constructor === Object;
 
   const hasPosts = posts && posts.length > 0;
-
-  console.log('-- state.isFetchViewed: ', state.isFetchViewed);
-  console.log('-- state.selected.viewed: ', state.selected.viewed);
 
   return (
     <Layout 
