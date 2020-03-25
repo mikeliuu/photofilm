@@ -12,6 +12,7 @@ const NavBar = () => {
   const navList = [
     { path: '/', text: 'Home' },
     { path: '/saved', text: 'Saved' },
+    { path: '/checkout', text: 'Checkout' },
     // { path: '/signup', text: 'Signup' }
   ];
 

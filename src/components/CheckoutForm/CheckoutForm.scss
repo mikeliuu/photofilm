@@ -1,0 +1,39 @@
+.checkoutForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: wrap column;
+  margin-top: 10em;
+}
+
+.checkoutBtn {
+  margin: 1em 0;
+  height: 36px;
+  min-width: 250px;
+  max-width: 100%;
+  width: 320px;
+  border-radius: 4px;
+  background: $secondary-color;
+  color: $text-color;
+  border: 0;
+  margin-top: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+  display: block;
+  -webkit-box-shadow: 0 4px 5.5px 0 rgba(0,0,0,.07);
+  box-shadow: 0 4px 5.5px 0 rgba(0,0,0,.07);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+
+
+  @media(hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: $primary-color;
+      color: $text-color;
+    }
+  }
+}
