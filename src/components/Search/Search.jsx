@@ -8,8 +8,8 @@ import SearchResult from './SearchResult/SearchResult';
 
 const Search = () => {
   const initialState = {
-    isSearch: false,
-    searchVal: ''
+    searchVal: '',
+    searchResult: []
   };
 
   const [state, setState] = useState({
@@ -20,36 +20,45 @@ const Search = () => {
 
 
   const onSearch = (e) => {
-    console.log('onSearch', e.target.value);
+    // console.log('onSearch', e.target.value);
 
-    //wip on search logic
-    //wip on update film viewed
+    const noSpaceVal = e.target.value.trim().toLowerCase().replace(/\s/g,'');
+  
+    //search logic
+    const results = films.filter(film => {
+      return (
+        film.name.toLowerCase().match(noSpaceVal) ||
+        film.name.toLowerCase().replace(/\s/g,'').match(noSpaceVal) || 
+        film.brand.name.toLowerCase().match(noSpaceVal) || 
+        film.brand.name.toLowerCase().replace(/\s/g,'').match(noSpaceVal) || 
+        film.seo.slug.toLowerCase().match(noSpaceVal) || 
+        film.seo.slug.toLowerCase().replace(/-/g,'').match(noSpaceVal)
+      )
+    });
 
-    setState({...state, searchVal: e.target.value});
+    //results group by brand
+    const mappedResults = results.reduce((acc, cur) => {
+      let temp = acc.find(i => i.brand === cur.brand.name);
+      
+      if(!temp) {
+        acc.push(temp = { brand: cur.brand.name, films: [] });
+      };
+      
+      temp.films.push({ name: cur.name, slug: cur.seo.slug });
+
+      return acc
+    }, []);
+
+    // console.log('mappedResults', mappedResults);
+
+    setState({ ...state, searchVal: e.target.value, searchResult: mappedResults });
+    
   };
 
-  const onClickSearch = () => {
-    setState({ ...state, isSearch: !state.isSearch });
-  };
 
   const onClearSearch = () => {
     setState({ ...initialState });
   };
-
-  //search logic,
-  const noSpaceVal = state.searchVal.trim().toLowerCase().replace(/\s/g,'');
-  const keyword = state.searchVal.trim().toLowerCase();
-
-  const results = films.filter(film => {
-    return (
-      film.name.toLowerCase().match(noSpaceVal) ||
-      film.name.toLowerCase().replace(/\s/g,'').match(noSpaceVal) || 
-      film.brand.name.toLowerCase().match(noSpaceVal) || 
-      film.brand.name.toLowerCase().replace(/\s/g,'').match(noSpaceVal) || 
-      film.seo.slug.toLowerCase().match(noSpaceVal) || 
-      film.seo.slug.toLowerCase().replace(/-/g,'').match(noSpaceVal)
-    )
-  });
 
 
   return (
@@ -64,7 +73,6 @@ const Search = () => {
           placeholder="Search..."
           value={ state.searchVal }
           onChange={ (e) => onSearch(e) }
-          onClick={ () => onClickSearch() }
         />
         
         <div className='searchClearWrapper' onClick={ () => onClearSearch() }>
@@ -78,17 +86,15 @@ const Search = () => {
             )
           }
         </div>
-        
       </div>
 
       {
         state.searchVal && 
         <SearchResult
-          keyword={ keyword }
-          results={ results }
+          keyword={ state.searchVal && state.searchVal.trim().toLowerCase() }
+          results={ state.searchResult || [] }
         />
       }
-      
       
     </InputGroup>
   );

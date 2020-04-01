@@ -24,11 +24,12 @@
 
 .list-group > a {
   background-color: $text-color;
+  font-weight: 600;
 
   @media(hover: hover) and (pointer: fine) {
     &:hover {
-      background-color: $primary-color;
-      color: $text-color;
+      background-color: $pin-lightgrey;
+      // color: $text-color;
     }
   }
 }
@@ -51,4 +52,13 @@
   font-weight: 700;
   max-width: 100%;
   word-wrap: break-word;
+}
+
+.searchListHead {
+  background-color: $primary-color !important;
+  color: $text-color !important;
+  padding: 0.4rem 1.25rem !important;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.4px;
 }
