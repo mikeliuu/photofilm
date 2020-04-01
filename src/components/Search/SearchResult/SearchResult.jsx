@@ -24,9 +24,27 @@ const SearchResult = (props) => {
           props.results.length > 0 && (
             props.results.map((i, index) => {
               return (
-                <ListGroup.Item key={index} action href={`/film/${i.seo.slug}`}>
-                  { i.name }
-                </ListGroup.Item>
+                <React.Fragment key={index}>
+
+                  <ListGroup.Item className='searchListHead'>
+                    { i.brand.toUpperCase() }
+                  </ListGroup.Item>
+
+                  { 
+                    i.films.length > 0 && (
+                      i.films.map((f, index) => {
+                        const filmName = `${f.name.charAt(0).toUpperCase()}${f.name.slice(1)}`
+                        
+                        return (
+                          <ListGroup.Item key={index} action href={`/film/${f.slug}`}>
+                            { filmName }
+                          </ListGroup.Item>
+                        )
+                      })
+                    )
+                  }
+
+                </React.Fragment>
               )
               
             })

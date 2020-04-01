@@ -39,7 +39,7 @@ const Search = () => {
     //results group by brand
     const mappedResults = results.reduce((acc, cur) => {
       let temp = acc.find(i => i.brand === cur.brand.name);
-
+      
       if(!temp) {
         acc.push(temp = { brand: cur.brand.name, films: [] });
       };
@@ -49,9 +49,9 @@ const Search = () => {
       return acc
     }, []);
 
-    console.log('mappedResults', mappedResults);
+    // console.log('mappedResults', mappedResults);
 
-    setState({ ...state, searchVal: e.target.value, searchResult: results });
+    setState({ ...state, searchVal: e.target.value, searchResult: mappedResults });
     
   };
 
@@ -60,7 +60,6 @@ const Search = () => {
     setState({ ...initialState });
   };
 
-  console.log('state.searchResult', state.searchResult);
 
   return (
     <InputGroup className='search'>
@@ -93,7 +92,7 @@ const Search = () => {
         state.searchVal && 
         <SearchResult
           keyword={ state.searchVal && state.searchVal.trim().toLowerCase() }
-          results={ state.searchResult.length > 0 ? state.searchResult : [] }
+          results={ state.searchResult || [] }
         />
       }
       
