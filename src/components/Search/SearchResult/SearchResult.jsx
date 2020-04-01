@@ -1,15 +1,9 @@
 import React from 'react';
 import { ListGroup } from 'react-bootstrap';
 
-const SearchResult = (props) => {
+const SearchResult = (props) => {  
 
-  //wip on mapping result list
-  /* e.g. [
-    { brand: kodak, film: [a, b, c ] },
-    { brand: lomo, film: [a, b ] }
-  ]
-  */
-
+  // console.log('props.results', props.results);
 
   return(
     <div className='searchResult resultHeadColor'>
