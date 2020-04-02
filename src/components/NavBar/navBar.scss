@@ -1,4 +1,4 @@
-.navWarpper {
+.navWrapper {
   position: fixed;
   width: 100%;
   height: $navbar-height;
@@ -12,14 +12,18 @@
   top: 0;
   left: 0;
   right: 0;
-
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
+  // display: flex;
+  // flex-wrap: wrap;
+  // align-items: center;
+  // justify-content: space-between;
   padding: 0.5rem 1rem;
   background-color: white;
 
+  max-width: $layout-max-width;
+  margin: 0 auto;
+  display: grid;
+  
+  grid-template-columns: auto 1fr;
 
   .navLogo {
     color: $secondary-color !important;
@@ -39,6 +43,7 @@
   }
 
   .navRight {
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,4 +103,25 @@
   bottom: 0;
   left: 0;
   border-bottom: 1px solid $pin-lightgrey !important;
+}
+
+.navDropdown {
+  margin-top: $navbar-height;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: nowrap column;
+
+  background-color: $primary-color;
+  padding: 20px 0;
+
+  .dropdownSearch {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .dropdownLink > div {
+    padding: 10px 0 0 0;
+  }
+
 }

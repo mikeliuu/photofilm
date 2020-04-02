@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import Search from '../Search/Search';
+import MoreHorizRoundedIcon from '@material-ui/icons/MoreHorizRounded';
 
 const NavBar = () => {
   const { pathname } = useLocation();
@@ -17,7 +18,8 @@ const NavBar = () => {
 
 
   return (
-    <div className="navWarpper">
+    <nav className="navWrapper">
+
       <div className="navbar">
         <Link to="/" className="navLogo">
           Photofilm
@@ -39,12 +41,32 @@ const NavBar = () => {
               )
             }
           </div>
+
+          <MoreHorizRoundedIcon/>
         </div>
 
-        <div id='navDivider'></div>
       </div>
 
-    </div>
+      <div className='navDropdown'>
+        <Search className='dropdownSearch'/>
+        <div>
+          {
+            navList && (
+              navList.map((n, index) => (
+                <Link to={ n.path } className='dropdownLink' key={index}>
+                  <div className={ pathname === n.path ? linkActive : linkNormal }>
+                    { n.text }
+                  </div>
+                </Link>
+              ))
+            )
+          }
+        </div>
+      </div>
+
+      <div id='navDivider'></div>
+
+    </nav>
   );
 };
 
