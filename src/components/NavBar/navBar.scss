@@ -6,24 +6,44 @@
   z-index: 99;
 }
 
-.navbar {
-  position: fixed;
-  padding: 12px 30px;
-  top: 0;
-  left: 0;
-  right: 0;
-  // display: flex;
-  // flex-wrap: wrap;
-  // align-items: center;
-  // justify-content: space-between;
-  padding: 0.5rem 1rem;
-  background-color: white;
+.linkText {
+  letter-spacing: -.4px;
+  font-weight: 700;
+  font-size: 16px;
+}
 
+.pinGrey {
+  color: $pin-grey !important;
+}
+
+.mobileActive {
+  color: $primary-color !important;
+}
+
+#navDivider {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  border-bottom: 1px solid $pin-lightgrey !important;
+}
+
+
+//desktop nav
+.navbar {
+  padding: 12px 30px;
+
+  height: inherit;
   max-width: $layout-max-width;
   margin: 0 auto;
   display: grid;
-  
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto auto;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  padding: 0.5rem 1rem;
+  background-color: white;
 
   .navLogo {
     color: $secondary-color !important;
@@ -43,6 +63,9 @@
   }
 
   .navRight {
+    @media (max-width: $media-md) {
+      display: none;
+    }
 
     display: flex;
     align-items: center;
@@ -85,43 +108,54 @@
       }
     }
   }
-}
 
-.linkText {
-  letter-spacing: -.4px;
-  font-weight: 700;
-  font-size: 16px;
-}
+  .navMenuIcon {
+    @media (max-width: $media-md) {
+      display: block;
+    }
 
-.pinGrey {
-  color: $pin-grey !important;
-}
+    font-size: 30px;
+    display: none;
 
-#navDivider {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  border-bottom: 1px solid $pin-lightgrey !important;
-}
-
-.navDropdown {
-  margin-top: $navbar-height;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: nowrap column;
-
-  background-color: $primary-color;
-  padding: 20px 0;
-
-  .dropdownSearch {
-    width: 80%;
-    margin: 0 auto;
   }
 
-  .dropdownLink > div {
-    padding: 10px 0 0 0;
+}
+
+
+//mobile nav
+.mobileNav {
+  @media (max-width: $media-sm) {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: nowrap row;
+  }
+
+  display: none;
+  height: $navbar-height;
+
+  background-color: $text-color;
+  padding: 0.5em 1em;
+
+  .mobileSearch {
+    // width: 80%;
+    // margin: 0 auto;
+    width: 222px;
+  }
+
+  .linkWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .linkWrapper :not(:first-child) {
+    padding-left: 0.5em;
+  }
+
+
+  .linkText > svg {
+    font-size: 28px;
   }
 
 }
