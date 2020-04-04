@@ -114,7 +114,7 @@
       display: block;
     }
 
-    font-size: 30px;
+    font-size: 36px;
     display: none;
 
   }
@@ -123,39 +123,103 @@
 
 
 //mobile nav
+// .mobileNav {
+//   @media (max-width: $media-sm) {
+//     display: flex !important;
+//     justify-content: space-between;
+//     align-items: center;
+//     flex-flow: nowrap row;
+//   }
+
+//   display: none;
+//   height: $navbar-height;
+
+//   background-color: $text-color;
+//   padding: 0.5em 1em;
+
+//   .mobileSearch {
+//     // width: 80%;
+//     // margin: 0 auto;
+//     width: 222px;
+//   }
+
+//   .linkWrapper {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//   }
+
+//   .linkWrapper :not(:first-child) {
+//     padding-left: 0.5em;
+//   }
+
+
+//   .linkText > svg {
+//     font-size: 28px;
+//   }
+
+// }
+
+
 .mobileNav {
-  @media (max-width: $media-sm) {
-    display: flex !important;
-    justify-content: space-between;
-    align-items: center;
-    flex-flow: nowrap row;
+    @media (max-width: $media-sm) {
+      display: flex !important;
+      justify-content: space-between;
+      align-items: center;
+      flex-flow: wrap column;
+    }
+  
+    display: none;
+    // height: $navbar-height;
+  
+    background-color: $text-color;
+    padding: 0.5em 1em;
+  
+    .linkWrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-flow: wrap column;
+      margin-top: 0.5em;
+    }
+  
+    // .linkWrapper :not(:first-child) {
+    //   padding-left: 0.5em;
+    // }
+  
+    .dropdownLink {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  
+      text-decoration: none;
+      text-align: center;
+      width: 6em; //80px;
+      height: 3em; //30px;
+  
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.06);
+        border-radius: 3em;
+        -webkit-border-radius: 3em;
+        -moz-border-radius: 3em;
+        -ms-border-radius: 3em;
+        -o-border-radius: 3em;
+      }
+    }
+  
+    // .linkText > svg {
+    //   font-size: 28px;
+    // }
+  
   }
 
-  display: none;
-  height: $navbar-height;
 
-  background-color: $text-color;
-  padding: 0.5em 1em;
-
-  .mobileSearch {
-    // width: 80%;
-    // margin: 0 auto;
-    width: 222px;
+  .navOverlay {
+    position: absolute;
+    top: $navbar-height;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: -1;
   }
-
-  .linkWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .linkWrapper :not(:first-child) {
-    padding-left: 0.5em;
-  }
-
-
-  .linkText > svg {
-    font-size: 28px;
-  }
-
-}

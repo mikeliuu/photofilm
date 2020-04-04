@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import Search from '../Search/Search';
@@ -8,6 +8,10 @@ import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 
 const NavBar = () => {
   const { pathname } = useLocation();
+
+  const [state ,setState] = useState({
+    isOpenDropdown: false,
+  });
 
   const linkNormal = `linkText pinGrey`;
   const linkActive = `linkText pinBlack`;
@@ -23,6 +27,7 @@ const NavBar = () => {
   const onClickDropdown = () => {
     console.log('click dropdown nav');
     
+    setState({ ...state, isOpenDropdown: !state.isOpenDropdown });
   };
 
 
@@ -55,29 +60,37 @@ const NavBar = () => {
         <MoreHorizRoundedIcon className='navMenuIcon pinGrey' onClick={ () => onClickDropdown() }/>
       </div>
 
-      {/* mobile nav */}
-      <div className='mobileNav'>
-          <Search className='mobileSearch'/>
-          <div className='linkWrapper'>
-            {
-              navList && (
-                navList.map((n, index) => {
-                  if(!n.icon) return;
+    {/* mobile nav */}
+      {
+        state.isOpenDropdown && (
+          <div className='mobileNav'>
+            <Search className='mobileSearch'/>
+            <div className='linkWrapper'>
+              {
+                navList && (
+                  navList.map((n, index) => {
+                    // if(!n.icon) return;
 
-                  return(
-                    <Link to={ n.path } className='dropdownLink' key={index}>
-                      <div className={ pathname === n.path ? mobileLinkActive : linkNormal }>
-                        { n.icon }
-                      </div>
-                    </Link>
-                  )
-                })
-              )
-            }
+                    return(
+                      <Link to={ n.path } className='dropdownLink' key={index}>
+                        <div className={ pathname === n.path ? linkActive : linkNormal }>
+                          { n.text }
+                        </div>
+                      </Link>
+                    )
+                  })
+                )
+              }
+            </div>
           </div>
-        </div>
+        )
+      }
 
       <div id='navDivider'></div>
+      
+      {
+        state.isOpenDropdown && <div className='navOverlay'></div>
+      }
 
     </nav>
   );
