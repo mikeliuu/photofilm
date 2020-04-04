@@ -46,6 +46,10 @@
   background-color: white;
 
   .navLogo {
+    @media (max-width: $media-sm) {
+      padding: 0;
+    }
+
     color: $secondary-color !important;
     letter-spacing: -.4px;
     font-weight: 700;
@@ -63,7 +67,7 @@
   }
 
   .navRight {
-    @media (max-width: $media-md) {
+    @media (max-width: $media-sm) {
       display: none;
     }
 
@@ -97,26 +101,33 @@
     width: 6em; //80px;
     height: 3em; //30px;
 
-    @media(hover: hover) and (pointer: fine) {
-      &:hover {
-        background-color: rgba(0, 0, 0, 0.06);
-        border-radius: 3em;
-        -webkit-border-radius: 3em;
-        -moz-border-radius: 3em;
-        -ms-border-radius: 3em;
-        -o-border-radius: 3em;
-      }
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.06);
+      border-radius: 3em;
+      -webkit-border-radius: 3em;
+      -moz-border-radius: 3em;
+      -ms-border-radius: 3em;
+      -o-border-radius: 3em;
     }
   }
 
   .navMenuIcon {
-    @media (max-width: $media-md) {
+    @media (max-width: $media-sm) {
       display: block;
+      color: $pin-grey;
     }
 
     font-size: 36px;
     display: none;
 
+    // &:hover {
+    //   background-color: rgba(0, 0, 0, 0.06);
+    //   border-radius: 3em;
+    //   -webkit-border-radius: 3em;
+    //   -moz-border-radius: 3em;
+    //   -ms-border-radius: 3em;
+    //   -o-border-radius: 3em;
+    // }
   }
 
 }
@@ -164,23 +175,27 @@
 .mobileNav {
     @media (max-width: $media-sm) {
       display: flex !important;
-      justify-content: space-between;
-      align-items: center;
       flex-flow: wrap column;
+
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 99;
+      padding: 4em;
     }
-  
-    display: none;
+    
     // height: $navbar-height;
-  
+    display: none;
     background-color: $text-color;
-    padding: 0.5em 1em;
+    padding: 1em;
   
     .linkWrapper {
       display: flex;
       justify-content: center;
       align-items: center;
       flex-flow: wrap column;
-      margin-top: 0.5em;
+      margin-top: 1em;
     }
   
     // .linkWrapper :not(:first-child) {
@@ -196,6 +211,8 @@
       text-align: center;
       width: 6em; //80px;
       height: 3em; //30px;
+
+      margin-top: 0.5em;
   
       &:hover {
         background-color: rgba(0, 0, 0, 0.06);
@@ -210,16 +227,34 @@
     // .linkText > svg {
     //   font-size: 28px;
     // }
+
+    .navCloseIcon {  
+      font-size: 36px;
+      color: $pin-grey;
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 7px 14px;
+
+      // &:hover {
+      //   background-color: rgba(0, 0, 0, 0.06);
+      //   border-radius: 3em;
+      //   -webkit-border-radius: 3em;
+      //   -moz-border-radius: 3em;
+      //   -ms-border-radius: 3em;
+      //   -o-border-radius: 3em;
+      // }
+    }
   
   }
 
 
-  .navOverlay {
-    position: absolute;
-    top: $navbar-height;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.4);
-    z-index: -1;
-  }
+  // .navOverlay {
+  //   position: absolute;
+  //   top: $navbar-height;
+  //   left: 0;
+  //   width: 100%;
+  //   height: 100vh;
+  //   background-color: rgba(0, 0, 0, 0.4);
+  //   z-index: -1;
+  // }
