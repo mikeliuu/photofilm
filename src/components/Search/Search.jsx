@@ -6,7 +6,7 @@ import { InputGroup, FormControl } from 'react-bootstrap';
 
 import SearchResult from './SearchResult/SearchResult';
 
-const Search = () => {
+const Search = ({ className }) => {
   const initialState = {
     searchVal: '',
     searchResult: []
@@ -62,7 +62,7 @@ const Search = () => {
 
 
   return (
-    <InputGroup className='search'>
+    <InputGroup className={ className ? `search ${className}` : 'search' }>
 
       <SearchRoundedIcon className='searchIcon'/>
 

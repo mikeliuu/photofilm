@@ -1,4 +1,4 @@
-.navWarpper {
+.navWrapper {
   position: fixed;
   width: 100%;
   height: $navbar-height;
@@ -6,22 +6,50 @@
   z-index: 99;
 }
 
+.linkText {
+  letter-spacing: -.4px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.pinGrey {
+  color: $pin-grey !important;
+}
+
+.mobileActive {
+  color: $primary-color !important;
+}
+
+#navDivider {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  border-bottom: 1px solid $pin-lightgrey !important;
+}
+
+
+//desktop nav
 .navbar {
-  position: fixed;
   padding: 12px 30px;
+
+  height: inherit;
+  max-width: $layout-max-width;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto auto;
   top: 0;
   left: 0;
   right: 0;
 
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
   padding: 0.5rem 1rem;
   background-color: white;
 
-
   .navLogo {
+    @media (max-width: $media-sm) {
+      padding: 0;
+    }
+
     color: $secondary-color !important;
     letter-spacing: -.4px;
     font-weight: 700;
@@ -39,6 +67,10 @@
   }
 
   .navRight {
+    @media (max-width: $media-sm) {
+      display: none;
+    }
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,7 +101,119 @@
     width: 6em; //80px;
     height: 3em; //30px;
 
-    @media(hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.06);
+      border-radius: 3em;
+      -webkit-border-radius: 3em;
+      -moz-border-radius: 3em;
+      -ms-border-radius: 3em;
+      -o-border-radius: 3em;
+    }
+  }
+
+  .navMenuIcon {
+    @media (max-width: $media-sm) {
+      display: block;
+      color: $pin-grey;
+    }
+
+    font-size: 36px;
+    display: none;
+
+    // &:hover {
+    //   background-color: rgba(0, 0, 0, 0.06);
+    //   border-radius: 3em;
+    //   -webkit-border-radius: 3em;
+    //   -moz-border-radius: 3em;
+    //   -ms-border-radius: 3em;
+    //   -o-border-radius: 3em;
+    // }
+  }
+
+}
+
+
+//mobile nav
+// .mobileNav {
+//   @media (max-width: $media-sm) {
+//     display: flex !important;
+//     justify-content: space-between;
+//     align-items: center;
+//     flex-flow: nowrap row;
+//   }
+
+//   display: none;
+//   height: $navbar-height;
+
+//   background-color: $text-color;
+//   padding: 0.5em 1em;
+
+//   .mobileSearch {
+//     // width: 80%;
+//     // margin: 0 auto;
+//     width: 222px;
+//   }
+
+//   .linkWrapper {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//   }
+
+//   .linkWrapper :not(:first-child) {
+//     padding-left: 0.5em;
+//   }
+
+
+//   .linkText > svg {
+//     font-size: 28px;
+//   }
+
+// }
+
+
+.mobileNav {
+    @media (max-width: $media-sm) {
+      display: flex !important;
+      flex-flow: wrap column;
+
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 99;
+      padding: 4em;
+    }
+    
+    // height: $navbar-height;
+    display: none;
+    background-color: $text-color;
+    padding: 1em;
+  
+    .linkWrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-flow: wrap column;
+      margin-top: 1em;
+    }
+  
+    // .linkWrapper :not(:first-child) {
+    //   padding-left: 0.5em;
+    // }
+  
+    .dropdownLink {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  
+      text-decoration: none;
+      text-align: center;
+      width: 6em; //80px;
+      height: 3em; //30px;
+
+      margin-top: 0.5em;
+  
       &:hover {
         background-color: rgba(0, 0, 0, 0.06);
         border-radius: 3em;
@@ -79,23 +223,38 @@
         -o-border-radius: 3em;
       }
     }
+  
+    // .linkText > svg {
+    //   font-size: 28px;
+    // }
+
+    .navCloseIcon {  
+      font-size: 36px;
+      color: $pin-grey;
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 7px 14px;
+
+      // &:hover {
+      //   background-color: rgba(0, 0, 0, 0.06);
+      //   border-radius: 3em;
+      //   -webkit-border-radius: 3em;
+      //   -moz-border-radius: 3em;
+      //   -ms-border-radius: 3em;
+      //   -o-border-radius: 3em;
+      // }
+    }
+  
   }
-}
 
-.linkText {
-  letter-spacing: -.4px;
-  font-weight: 700;
-  font-size: 16px;
-}
 
-.pinGrey {
-  color: $pin-grey !important;
-}
-
-#navDivider {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  border-bottom: 1px solid $pin-lightgrey !important;
-}
+  // .navOverlay {
+  //   position: absolute;
+  //   top: $navbar-height;
+  //   left: 0;
+  //   width: 100%;
+  //   height: 100vh;
+  //   background-color: rgba(0, 0, 0, 0.4);
+  //   z-index: -1;
+  // }

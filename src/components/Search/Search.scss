@@ -1,7 +1,7 @@
 .search {
   position: relative;
   width: 100%;
-  margin-right: 8px;
+  // margin-right: 8px;
   background-color: $pin-lightgrey;
   border-radius: 8px;
   -webkit-border-radius: 8px;
@@ -34,6 +34,7 @@
 
 .searchGroup {
   position: relative;
+  width: 100%;
 }
 
 .searchClearWrapper {
@@ -98,3 +99,9 @@
 //     width: 120%;
 //   }
 // }
+
+.mobileSearch {
+  // width: 80%;
+  // margin: 0 auto;
+  min-width: inherit;
+}

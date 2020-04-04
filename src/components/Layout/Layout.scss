@@ -8,8 +8,9 @@
 
 .layoutBody {
   position: relative;
-  width: 100%;
   min-height: 100%;
-  padding: 2em;
-  padding-top: 76px;
+  max-width: $layout-max-width;
+  margin: 0 auto;
+  padding: 0.5em 1em;
+  padding-top: $navbar-height;
 }
