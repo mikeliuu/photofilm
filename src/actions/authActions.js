@@ -29,20 +29,38 @@ export const signupUser = (user) => {
       dispatch(alert.success(res.data));
     })
     .catch(err => {
-      dispatch(signupFailure());
+      dispatch(signupFailure()); //replace with alert
       dispatch(alert.error(err));
     });
   };
 };
 
 
-//login func
-// const loginSuccess = () => (
-//   { type: types.SIGNUP_SUCCESS }
-// );
-// const loginFailure = (message) => (
-//   { 
-//     type: types.SIGNUP_FAILURE,
-//     message: message
-//   }
-// );
+// login func
+const loginRequest = () => (
+  { type: types.LOGIN_REQUEST }
+);
+const loginSuccess = () => (
+  { type: types.LOGIN_SUCCESS }
+);
+const loginFailure = (message) => (
+  { 
+    type: types.LOGIN_FAILURE,
+    message: message
+  }
+);
+
+export const loginUser = (user) => {
+  return async (dispatch, getState) => {
+    dispatch(loginRequest());
+
+    return await axios.post(`${config.API_HOST}/api/auth/login`, user)
+    .then(res => {
+      dispatch(loginSuccess());
+    })
+    .catch(err => {
+      dispatch(loginFailure()); //replace with alert
+      dispatch(alert.error(err));
+    })
+  }
+}

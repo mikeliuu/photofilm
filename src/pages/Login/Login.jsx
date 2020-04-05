@@ -5,10 +5,10 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import Layout from '../../components/Layout/Layout';
 import * as alert from '../../actions/alertActions';
-import { signupUser } from '../../actions/authActions';
+import { loginUser } from '../../actions/authActions';
 
 
-const Signup = () => {
+const Login = () => {
   const dispatch = useDispatch();
   const alertMessage = useSelector(state => state.alert.message);
 
@@ -34,10 +34,10 @@ const Signup = () => {
   const [state, setState] = useState(initialState);
 
   const onChangeInput = (e) => {
-    if(e.target.name === 'username' && e.target.value.trim().length < 4) {
+    if(e.target.name === 'input' && e.target.value.trim().length < 4) {
       setState({ ...state, [e.target.name]: e.target.value.trim(), isValidName: false });
     }
-    setState({ ...state, [e.target.name]: e.target.value.trim() })
+    setState({ ...state, [e.target.name]: e.target.value })
   };
 
 
@@ -45,16 +45,14 @@ const Signup = () => {
     e.preventDefault();
     const { 
       submitted, 
-      isValidName, 
       isValidEmail, 
       isValidPw, 
-      isValidConfirmPw,
       warning,
       ...formData 
     } = state;
 
     //validation 
-    const checkValid = (isValidName && isValidEmail && isValidPw && isValidConfirmPw);
+    const checkValid = (isValidEmail && isValidPw);
     const checkEmpty = Object.values(formData).every(i => i !== '');
 
     // console.log('formData', formData);
@@ -62,7 +60,7 @@ const Signup = () => {
 
     if(checkValid && checkEmpty) {
       dispatch(alert.clear())
-      dispatch(signupUser(formData));
+      dispatch(loginUser(formData));
     } else { //enhace warning alert from which field
       setState({ ...state, warning: ['Umm...something wrong, please check again!']})
       return;
@@ -77,15 +75,15 @@ const Signup = () => {
     return regexEmail.test(email);
   };
 
-  const isCheckNamePw = (field) => {
-    return regexName.test(field);
-  };
+  // const isCheckNamePw = (field) => {
+  //   return regexName.test(field);
+  // };
 
 
   //check if validate & show warning
   useEffect(() => {
-    const { email, password, confirmPassword } = state;
-
+    const { email, password } = state;
+    
     //email
     if(email && email !== '' && !isCheckEmail(email)) {
       setState(state => ({...state, isValidEmail: false}))
@@ -94,20 +92,13 @@ const Signup = () => {
     };
 
     //password
-    if(password && password !=='' && password.length < PW_LENGTH && !isCheckNamePw(password)) {
+    if(password && password !=='') {
       setState(state => ({...state, isValidPw: false}))
     } else {
       setState(state => ({...state, isValidPw: true}))
     };
 
-    //confirm password
-    if(confirmPassword && confirmPassword !=='' && confirmPassword !== password) {
-      setState(state => ({...state, isValidConfirmPw: false}))
-    } else {
-      setState(state => ({...state, isValidConfirmPw: true}))
-    };
-
-  }, [state.email, state.password, state.confirmPassword]);
+  }, [state.email, state.password]);
 
 
   //success submit message
@@ -127,31 +118,12 @@ const Signup = () => {
   }, [state.submitted, dispatch]);
 
 
-  //check username & toLowerCase
-  useEffect(() => {
-    const { username } = state;
-    if(username === '') return ;
-    
-    if(isCheckNamePw(username)) return setState(state => ({...state, username: username.toLowerCase(), isValidName: true}))
-
-    const lowerUsernameTimer = setTimeout(() => {
-      if(username && username !== '' && !isCheckNamePw(username)) {
-        return setState(state => ({...state, username: username.toLowerCase(), isValidName: false}))
-      }
-    }, 200);
-
-    return () => {
-      clearTimeout(lowerUsernameTimer)
-    };
-  }, [state.username, state.isValidName]);
-
-  // console.log('state', state)
-
+  
   return (
     <Layout
-      title={`Signup - Photofilm`}
-      keywords={`signup, register, photo film, camera film, film, photofilm`}
-      description={"Signup an account to be a member of photofilm."}
+      title={`Login - Photofilm`}
+      keywords={`login, login page, signin, photo film, camera film, film, photofilm`}
+      description={"Login your member account of photofilm."}
       className={`d-flex justify-content-center align-items-center`}
     >
 
@@ -159,15 +131,6 @@ const Signup = () => {
         <Form onSubmit={ (e) => onSubmit(e) }>
 
           <div className="formInput">
-            <FormGroup >
-              <Label>Username</Label>
-              <Input className={ !state.isValidName ? 'wrongBorder' : 'defaultBorder' } type="text" name="username" placeholder={`Username at least ${NAME_LENGTH} characters`} value={ state.username } onChange={ (e) => onChangeInput(e) } />
-
-              {
-                !state.isValidName && <div className='wrongText'>Username is required { NAME_LENGTH } characters long or above</div>
-              }
-            </FormGroup>
-
             <FormGroup>
               <Label>Email</Label>
               <Input className={ !state.isValidEmail ? 'wrongBorder' : 'defaultBorder' }type="text" name="email" placeholder="Email" value={ state.email } onChange={ (e) => onChangeInput(e) } />
@@ -179,24 +142,15 @@ const Signup = () => {
 
             <FormGroup>
               <Label>Password</Label>
-              <Input className={ !state.isValidPw ? 'wrongBorder' : 'defaultBorder' } type="password" name="password" placeholder={`Password at least ${PW_LENGTH} characters`} value={ state.password } onChange={ (e) => onChangeInput(e) } />
+              <Input className={ !state.isValidPw ? 'wrongBorder' : 'defaultBorder' } type="password" name="password" placeholder={`Enter Password`} value={ state.password } onChange={ (e) => onChangeInput(e) } />
 
               {
-                !state.isValidPw && <div className='wrongText'>Password is required { PW_LENGTH } characters long or above</div>
-              }
-            </FormGroup>
-
-            <FormGroup>
-              <Label>Confirm Password</Label>
-              <Input className={ !state.isValidConfirmPw ? 'wrongBorder' : 'defaultBorder' }type="password" name="confirmPassword" placeholder="Re-enter password" value={ state.confirmPassword } onChange={ (e) => onChangeInput(e) } />
-
-              {
-                !state.isValidConfirmPw && <div className='wrongText'>Password doesn't match</div>
+                !state.isValidPw && <div className='wrongText'>Hmm...Your password is incorrect</div>
               }
             </FormGroup>
 
             <Button type="submit" className="authSubmitBtn btnFilled">
-              { state.submitted && !alertMessage ? `Sending...` : `Signup` }
+              { state.submitted && !alertMessage ? `Sending...` : `Login` }
             </Button>
 
             {/* {alertMessage} */}
@@ -210,7 +164,7 @@ const Signup = () => {
             }
           </div>
 
-          <Link to='/login' className="optionBottom signupLink"><div className='linkText pinBlack'>Registered? &nbsp; Login instead</div></Link>
+          <Link to='/signup' className="optionBottom signupLink"><div className='linkText pinBlack'>Create account</div></Link>
 
         </Form>
       </div>
@@ -218,4 +172,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Login;

@@ -17,7 +17,7 @@
 }
 
 .formInput {
-  padding: 2em;
+  margin: 2.5em 2em;
   padding-bottom: 0;
   background-color: $text-color;
 
@@ -45,15 +45,12 @@
   color: $pin-red;
 }
 
-.signupLink {
-  text-decoration: none !important;
-  text-align: center;
-}
 
-.signupBtn {
-  margin: 5px 0 19px 0;
+.authSubmitBtn {
+  margin: 5px 0 0 0;
   width: 100%;
   font-size: 16px;
+  font-weight: 700;
 }
 
 .warning {
@@ -62,13 +59,22 @@
   margin-bottom: 15px;
 }
 
-.signupSuccess {
-  color: $pin-black;
+.signupLink {
+  text-decoration: none !important;
   text-align: center;
-  margin-bottom: 15px;
 }
 
-.signupBottom {
+.optionBottom {
+  &:hover {
+    background-color: $auth-btn-grey !important;
+
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    -moz-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    -ms-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    -o-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -85,6 +91,13 @@
   -moz-border-bottom-right-radius: $signup-radius;
   -ms-border-bottom-right-radius: $signup-radius;
   -o-border-bottom-right-radius: $signup-radius;
+}
+
+
+.authSuccess {
+  color: $pin-black;
+  text-align: center;
+  margin-bottom: 15px;
 }
 
 .pinWhite {
