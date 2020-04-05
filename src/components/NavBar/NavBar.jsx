@@ -56,10 +56,6 @@ const NavBar = () => {
     setState({ ...state, isOpenDropdown: !state.isOpenDropdown });
   };
 
-  console.log('width', width);
-  console.log('(for redux) isTabletWidth', isTabletWidth);
-
-
   return (
     <nav className="navWrapper">
 
