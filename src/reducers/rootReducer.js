@@ -6,6 +6,7 @@ import films from './filmsReducer';
 import posts from './postsReducer';
 import auth from './authReducer';
 import alert from './alertReducer';
+import system from './systemReducer';
 
 const rootPersistConfig = {
   key: 'root',
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   films,
   posts,
   auth,
-  alert
+  alert,
+  system
 });
 
 export default persistReducer(rootPersistConfig, rootReducer);
